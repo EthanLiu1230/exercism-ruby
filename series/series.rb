@@ -8,16 +8,11 @@ To get started with TDD, see the `README.md` file in your
 
 class Series
   def initialize(string)
-    @string = string
+    @numbers = string.split('') # ['1', '2', '3']
   end
 
   def slices(n)
-    raise ArgumentError if n > @string.length
-    slices = []
-    n.upto(@string.length) do |r|
-      l = r - n
-      slices << @string[l...r]
-    end
-    slices
+    raise ArgumentError if n > @numbers.size
+    @numbers.each_cons(n).map { |cons| cons.join('') }
   end
 end
